@@ -1,0 +1,44 @@
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class Salad {
+    private String name;
+    private String description;
+    private Map<Ingredient, Integer> ingredients; //storing ingredient and weight
+
+    public Salad(String name, String description) {
+        this.name = name;
+        this.description = description;
+        this.ingredients = new HashMap<>();
+    }
+
+    public void addIngredient(Ingredient ingredient, int weight) {
+        if (weight <= 0) {
+            System.out.println("Invalid weight. Must be greater than 0.");
+            return;
+        }
+        ingredients.put(ingredient, weight);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+    public int calculateTotalCalorie(){
+        int totalCalories = 0;
+        for(Map.Entry<Ingredient,Integer> entry: ingredients.entrySet()){
+            Ingredient ingredient = entry.getKey();
+            int weight = entry.getValue();
+            totalCalories += ingredient.calculateCalories(weight);
+        }
+        return totalCalories;
+    }
+
+    public Map<Ingredient, Integer> getIngredients() {
+        return ingredients;
+    }
+}
