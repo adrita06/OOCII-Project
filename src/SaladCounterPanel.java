@@ -20,7 +20,7 @@ public class SaladCounterPanel {
 
             switch (choice){
                 case 1-> saladCounter.displayMenu();
-                case 2 -> System.out.println("Customizing salad...");
+                case 2 ->saladCounter.displayIngredients();
                 case 3 -> System.out.println("Showing popular picks...");
                 case 4 -> System.out.println("Admin settings...");
                 case 5 -> {

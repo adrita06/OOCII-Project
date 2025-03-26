@@ -1,21 +1,21 @@
-Lettuce,15
-Carrots,41
-Cherry Tomatoes,18
-Cabbage,25
-Olive Oil,884
-Kale,49
-Quinoa,120
-Blueberries,57
-Almonds,579
-Avocado,160
-Grilled Chicken,165
-Cucumbers,16
-Lemon Juice,22
-Garlic,149
-Salt,0
-Grilled Peppers,40
-Grilled Tomatoes,32
-Grilled Onions,40
-Grilled Garlic,150
-Tuna,132
-Boiled Egg,155
+Lettuce,15,10
+Carrots,41,12
+Cherry Tomatoes,18,35
+Cabbage,25,8
+Olive Oil,884,120
+Kale,49,40
+Quinoa,120,80
+Blueberries,57,250
+Almonds,579,150
+Avocado,160,300
+Grilled Chicken,165,120
+Cucumbers,16,10
+Lemon Juice,22,15
+Garlic,149,40
+Salt,0,5
+Grilled Peppers,40,30
+Grilled Tomatoes,32,25
+Grilled Onions,40,20
+Grilled Garlic,150,50
+Tuna,132,180
+Boiled Egg,155,12

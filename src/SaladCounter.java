@@ -22,24 +22,55 @@ public class SaladCounter {
         saladList.add(salad);
     }
 
-    public void displayMenu(){
-        System.out.println("Menu: ");
-        int menuNum=0;
-        for(Salad salad:saladList){
-            Map<Ingredient,Integer> ingredients = salad.getIngredients();
+    public void displayMenu() {
+        System.out.println("         MENU           ");
+        System.out.println("+----------------------+");
+
+        int menuNum = 0;
+
+        for (Salad salad : saladList) {
+            Map<Ingredient, Integer> ingredients = salad.getIngredients();
             menuNum++;
-            System.out.println(menuNum + "." + salad.getName() + ": " + salad.getDescription());
-            System.out.println("Ingredients: ");
-            for(Map.Entry<Ingredient,Integer> entry : ingredients.entrySet()){
+
+            // Salad name and description
+            System.out.println(menuNum + ". " + salad.getName());
+            System.out.println("   " + salad.getDescription());
+
+            // Print table headers for ingredients
+            System.out.println("+----------------------+---------+-----------+");
+            System.out.printf("| %-20s | %-7s | %-9s |\n", "Ingredient", "Weight", "Calories");
+            System.out.println("+----------------------+---------+-----------+");
+
+            // Print each ingredient
+            for (Map.Entry<Ingredient, Integer> entry : ingredients.entrySet()) {
                 Ingredient ingredient = entry.getKey();
                 int weight = entry.getValue();
-                String ingredientName=ingredient.getName();
+                String ingredientName = ingredient.getName();
                 int caloriesPerIngredient = ingredient.calculateCalories(weight);
-                System.out.println(ingredientName+"("+weight+"g) - " +caloriesPerIngredient+ " kcal" );
+
+                System.out.printf("| %-20s | %4dg   | %4d kcal |\n", ingredientName, weight, caloriesPerIngredient);
             }
-            System.out.println("Total Calories: " + salad.calculateTotalCalorie() + " kcal");
-            System.out.println("\n");
+
+            System.out.println("+----------------------+---------+-----------+");
+            System.out.printf("| Total Calories                 |  %d kcal |\n", salad.calculateTotalCalorie());
+            System.out.println("+----------------------+---------+-----------+\n");
         }
+    }
+
+    public void displayIngredients(){
+        System.out.println("+------------------------+--------------------+-----------------+");
+        System.out.println("|  Available Ingredients |  Calorie Per 100g  |  Price Per 100g |");
+        System.out.println("+------------------------+--------------------+-----------------+");
+        int menuNum=0;
+        for(Ingredient ingredient:ingredients){
+            menuNum++;
+            System.out.printf("| %-22s | %-18d | %-15d |\n",
+                    menuNum + ". " + ingredient.getName(),
+                    ingredient.getCaloriesPer100g(),
+                    ingredient.getPricePer100g());
+        }
+
+        System.out.println("+------------------------+--------------------+-----------------+");
 
     }
     public void availableIngredients(){

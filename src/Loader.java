@@ -47,12 +47,13 @@ public class Loader {
                 if (line.trim().isEmpty()) continue;
 
                 String[] parts = line.split(",");
-                if (parts.length != 2) continue;
+                if (parts.length != 3) continue;
 
                 String ingredientName = parts[0].trim();
                 int caloriePer100g = Integer.parseInt(parts[1].trim());
+                int pricePer100g = Integer.parseInt(parts[2].trim());
 
-                Ingredient ingredient = new Ingredient(ingredientName, caloriePer100g);
+                Ingredient ingredient = new Ingredient(ingredientName, caloriePer100g,pricePer100g);
                 SaladCounter.getIngredients().add(ingredient);
 
             }
