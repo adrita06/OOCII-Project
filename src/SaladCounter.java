@@ -53,6 +53,7 @@ public class SaladCounter {
 
             System.out.println("+----------------------+---------+-----------+");
             System.out.printf("| Total Calories                 |  %d kcal |\n", salad.calculateTotalCalorie());
+            System.out.printf("| Price                          |  %d tk   |\n", salad.getPrice());
             System.out.println("+----------------------+---------+-----------+\n");
         }
     }

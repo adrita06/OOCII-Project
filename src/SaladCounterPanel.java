@@ -19,8 +19,15 @@ public class SaladCounterPanel {
             int choice = scanner.nextInt();
 
             switch (choice){
-                case 1-> saladCounter.displayMenu();
-                case 2 ->saladCounter.displayIngredients();
+                case 1-> {
+                    PredefinedMenuOrder predefinedMenuOrder=new PredefinedMenuOrder();
+                    predefinedMenuOrder.placeOrder(saladCounter);
+                }
+                case 2 ->{
+                    CustomizeOrder order = new CustomizeOrder();
+                    saladCounter.displayIngredients();
+                    order.customizeSalad(saladCounter,order);
+                }
                 case 3 -> System.out.println("Showing popular picks...");
                 case 4 -> System.out.println("Admin settings...");
                 case 5 -> {
@@ -29,6 +36,14 @@ public class SaladCounterPanel {
                     return;
                 }
                 default -> System.out.println("Invalid choice. Please try again.");
+            }
+            System.out.println("Would you like to:");
+            System.out.println("1.Add another salad");
+            System.out.println("2.Checkout");
+            System.out.println("3.Cancel Order");
+            int choice2 = scanner.nextInt();
+            if(choice2==1){
+                continue;
             }
         }
     }

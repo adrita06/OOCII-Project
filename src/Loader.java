@@ -10,11 +10,12 @@ public class Loader {
                 if (line.trim().isEmpty()) continue;
 
                 String[] parts = line.split(",");
-                if (parts.length != 3) continue;
+                if (parts.length != 4) continue;
 
                 String saladName = parts[0].trim();
                 String description = parts[1].trim();
-                Salad salad = new Salad(saladName, description);
+                int price = Integer.parseInt(parts[3].trim());
+                Salad salad = new Salad(saladName, description,price);
                 String ingredients = parts[2].trim();
 
                 String[] ingredientArray = ingredients.split(";");

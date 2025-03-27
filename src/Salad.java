@@ -5,11 +5,13 @@ import java.util.Map;
 public class Salad {
     private String name;
     private String description;
+    private int price;
     private Map<Ingredient, Integer> ingredients; //storing ingredient and weight
 
-    public Salad(String name, String description) {
+    public Salad(String name, String description,int price) {
         this.name = name;
         this.description = description;
+        this.price = price;
         this.ingredients = new HashMap<>();
     }
 
@@ -28,6 +30,11 @@ public class Salad {
     public String getDescription() {
         return description;
     }
+
+    public int getPrice() {
+        return price;
+    }
+
     public int calculateTotalCalorie(){
         int totalCalories = 0;
         for(Map.Entry<Ingredient,Integer> entry: ingredients.entrySet()){
