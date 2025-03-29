@@ -1,13 +1,15 @@
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 public class SaladCounterPanel {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         SaladCounter saladCounter = new SaladCounter();
         Cart cart = new Cart();
-        CustomerManager customerManager = new CustomerManager();
+        CustomerRegistraion customerRegistration = new CustomerRegistraion();
+        CustomerLogin customerLogin = new CustomerLogin();
         Customer customer = null;
         String saladMenu = "salad_menu.csv";
         String ingredientList = "ingredients.csv";
@@ -23,14 +25,14 @@ public class SaladCounterPanel {
             int choice1 = getValidChoice(scanner, 1, 3); // Helper method for input validation
 
             if (choice1 == 1) {
-                customerManager.registerCustomer();
+                customerRegistration.registerCustomer();
                 continue;
             } else if (choice1 == 2) {
                 System.out.println("Enter phone number:");
                 String number = scanner.next();
                 System.out.println("Enter password:");
                 String password = scanner.next();
-                customer = customerManager.authenticateLogin(number, password, "Customer.csv");
+                customer = customerLogin.authenticateLogin(number, password, "Customer.csv");
             }
             else if (choice1 == 3){
                 System.out.println("Exiting...");
@@ -39,14 +41,14 @@ public class SaladCounterPanel {
             }
 
             if (customer != null) {
-                loggedIn(scanner, saladCounter, cart, customer, customerManager);
+                loggedIn(scanner, saladCounter, cart, customer, customerRegistration);
             } else {
                 System.out.println("Invalid number or password!");
             }
         }
     }
 
-    public static void loggedIn(Scanner scanner, SaladCounter saladCounter, Cart cart, Customer customer, CustomerManager customerManager) {
+    public static void loggedIn(Scanner scanner, SaladCounter saladCounter, Cart cart, Customer customer, CustomerRegistraion customerManager) {
         while (true) {
             System.out.println("\n1. Menu");
             System.out.println("2. Customize Salad");
@@ -62,7 +64,8 @@ public class SaladCounterPanel {
                     salad = viewMenu(saladCounter, scanner, cart);
                     break;
                 case 2:
-                    CustomizeOrder order = new CustomizeOrder();
+                    Order myOrder = OrderFactory.createOrder(OrderType.CUSTOMIZE);
+                    CustomizeOrder order = (CustomizeOrder) myOrder;
                     Map<Ingredient, Integer> customIngredient = order.customizeSalad(saladCounter, order, 0);
                     salad = new Salad("Custom Salad", "", order.calculateTotalPrice(customIngredient), customIngredient);
                     break;
@@ -83,7 +86,7 @@ public class SaladCounterPanel {
         }
     }
 
-    private static void handleCartOptions(Scanner scanner, Cart cart, Salad salad, Customer customer, CustomerManager customerManager) {
+    private static void handleCartOptions(Scanner scanner, Cart cart, Salad salad, Customer customer, CustomerRegistraion customerManager) {
         while (true) {
             System.out.println("Would you like to:");
             System.out.println("1. Add another salad");
@@ -104,7 +107,7 @@ public class SaladCounterPanel {
         }
     }
 
-    public static void checkout(Cart cart, Scanner scanner, Customer customer, CustomerManager customerManager) {
+    public static void checkout(Cart cart, Scanner scanner, Customer customer, CustomerRegistraion customerManager) {
         cart.viewCart();
 
         while (true) {
@@ -130,7 +133,7 @@ public class SaladCounterPanel {
                     return;
                 case 4:
                     int totalPrice = cart.calculateTotalCartPrice();
-                    List<Customer> customerList = customerManager.customerList;
+                    List<Customer> customerList = customerManager.getCustomerList();
                     OrderConfirm orderConfirm = new OrderConfirm(totalPrice, customer, customerList);
                     orderConfirm.printReceipt(cart);
                     return;
@@ -150,7 +153,8 @@ public class SaladCounterPanel {
             int choice = getValidChoice(scanner, 1, 2);
 
             if (choice == 1) {
-                PredefinedMenuOrder predefinedMenuOrder = new PredefinedMenuOrder();
+                Order myOrder = OrderFactory.createOrder(OrderType.PREDEFINED);
+                PredefinedMenuOrder predefinedMenuOrder = (PredefinedMenuOrder)myOrder;
                 return predefinedMenuOrder.placeOrder(saladCounter);
             } else if (choice == 2) {
                 return null;

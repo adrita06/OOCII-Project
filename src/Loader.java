@@ -77,7 +77,7 @@ public class Loader {
                 int points = Integer.parseInt(parts[3].trim());
 
                 Customer customer = new Customer(ID,number,password,points);
-                CustomerManager.addCustomer(customer);
+                CustomerRegistraion.addCustomer(customer);
 
 
             }
