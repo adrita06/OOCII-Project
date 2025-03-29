@@ -14,6 +14,12 @@ public class Salad {
         this.price = price;
         this.ingredients = new HashMap<>();
     }
+    public Salad(String name, String description,int price,Map<Ingredient,Integer> ingredients) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.ingredients = ingredients;
+    }
 
     public void addIngredient(Ingredient ingredient, int weight) {
         if (weight <= 0) {

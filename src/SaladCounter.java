@@ -18,10 +18,6 @@ public class SaladCounter {
         this.saladList = new ArrayList<>();
         this.ingredients = new ArrayList<>();
     }
-    public void addSalad(Salad salad){
-        saladList.add(salad);
-    }
-
     public void displayMenu() {
         System.out.println("         MENU           ");
         System.out.println("+----------------------+");
@@ -42,19 +38,23 @@ public class SaladCounter {
             System.out.println("+----------------------+---------+-----------+");
 
             // Print each ingredient
-            for (Map.Entry<Ingredient, Integer> entry : ingredients.entrySet()) {
-                Ingredient ingredient = entry.getKey();
-                int weight = entry.getValue();
-                String ingredientName = ingredient.getName();
-                int caloriesPerIngredient = ingredient.calculateCalories(weight);
+            printEachIngredient(ingredients);
 
-                System.out.printf("| %-20s | %4dg   | %4d kcal |\n", ingredientName, weight, caloriesPerIngredient);
-            }
 
             System.out.println("+----------------------+---------+-----------+");
             System.out.printf("| Total Calories                 |  %d kcal |\n", salad.calculateTotalCalorie());
             System.out.printf("| Price                          |  %d tk   |\n", salad.getPrice());
             System.out.println("+----------------------+---------+-----------+\n");
+        }
+    }
+    private static void printEachIngredient(Map<Ingredient, Integer> ingredients) {
+        for (Map.Entry<Ingredient, Integer> entry : ingredients.entrySet()) {
+            Ingredient ingredient = entry.getKey();
+            int weight = entry.getValue();
+            String ingredientName = ingredient.getName();
+            int caloriesPerIngredient = ingredient.calculateCalories(weight);
+
+            System.out.printf("| %-20s | %4dg   | %4d kcal |\n", ingredientName, weight, caloriesPerIngredient);
         }
     }
 
@@ -72,9 +72,6 @@ public class SaladCounter {
         }
 
         System.out.println("+------------------------+--------------------+-----------------+");
-
-    }
-    public void availableIngredients(){
 
     }
 }

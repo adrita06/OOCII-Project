@@ -62,5 +62,29 @@ public class Loader {
             e.printStackTrace();
         }
     }
+    public static void loadCustomerFromCSV(String fileName) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.trim().isEmpty()) continue;
+
+                String[] parts = line.split(",");
+                if (parts.length != 4) continue;
+
+                String ID = parts[0].trim();
+                String number = parts[1].trim();
+                String password = parts[2].trim();
+                int points = Integer.parseInt(parts[3].trim());
+
+                Customer customer = new Customer(ID,number,password,points);
+                CustomerManager.addCustomer(customer);
+
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
