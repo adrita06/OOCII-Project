@@ -13,11 +13,6 @@ public class OrderConfirm {
         this.customer = customer;
         this.customerList = customerList;
     }
-     public void addPoints(){
-        int prevPoints = customer.getPoints();
-        int newPoints = totalPrice/10;
-
-     }
 
     public void printReceipt(Cart cart)
     {

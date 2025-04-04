@@ -91,11 +91,6 @@ public class CustomerRegistraion {
         } catch (IOException e) {
             System.err.println("Error reading file: " + e.getMessage());
         }
-
-        return incrementID(lastID);
-    }
-
-    private String incrementID(String lastID) {
         String[] parts = lastID.split("-");
         if (parts.length == 2) {
             try {
@@ -107,5 +102,6 @@ public class CustomerRegistraion {
         }
         return "C-01";  // Fallback ID
     }
+
 
 }
