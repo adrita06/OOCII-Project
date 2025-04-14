@@ -89,17 +89,13 @@ public class SaladCounterPanel {
     private static void handleCartOptions(Scanner scanner, Cart cart, Salad salad, Customer customer, CustomerRegistraion customerManager) {
         while (true) {
             System.out.println("Would you like to:");
-            System.out.println("1. Add another salad");
-            System.out.println("2. Checkout");
-            System.out.println("3. Cancel Order");
-
-            int choice = getValidChoice(scanner, 1, 3);
+            System.out.println("1. Return to Main Menu");
+            System.out.println("2. Cancel Current Order");
+            int choice = getValidChoice(scanner, 1, 2);
 
             if (choice == 1) {
                 return;
             } else if (choice == 2) {
-                checkout(cart, scanner, customer, customerManager);
-            } else if (choice == 3) {
                 cart.removeFromCart2(salad);
                 System.out.println("Order canceled.");
                 return;
