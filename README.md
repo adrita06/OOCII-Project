@@ -10,11 +10,13 @@ Once a salad is completed, it will be added to the cart. Customers can then choo
 ● Add another salad,
 ● View the cart, or
 ● Cancel any salad already added to the cart.
+
 When viewing the cart, customers will see:
 ● A list of all salads added,
 ● The ingredients in each salad,
 ● The calorie count and price of each salad,
 ● Finally, the total price and total calories for the entire order are given.
+
 If they wish to remove a salad, they can do so by entering the salad number (as shown in the cart), and it will be removed.
 They can also cancel the entire order if needed.
 After confirming the order, a receipt will be generated, and loyalty points will be awarded based on the total price. If the order exceeds 500 Taka, the customer will receive a discount based on their accumulated points.
